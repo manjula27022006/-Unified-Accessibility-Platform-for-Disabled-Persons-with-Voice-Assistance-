@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unified Accessibility Platform for Disabled Persons</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#eef2f7}
+.section{display:none;padding:16px;min-height:100vh}
+.active{display:block}
+nav{display:flex;flex-wrap:wrap;position:sticky;top:0;background:#111;color:#fff}
+nav button{flex:1;border:none;padding:12px;background:#111;color:#fff}
+nav button:hover{background:#333}
+.big-btn{width:100%;padding:14px;font-size:16px;margin:6px 0}
+input,select,textarea{width:100%;padding:10px;margin:6px 0}
+.card{background:#fff;padding:12px;margin:8px 0;border-radius:6px}
+.login{background:#3949ab;color:#fff}
+.lang{background:#6a1b9a;color:#fff}
+.stt{background:#fff9c4}
+.tts{background:#e3f2fd}
+.govt{background:#e8f5e9}
+.ngo{background:#f3e5f5}
+.school{background:#fce4ec}
+.medicine{background:#fff3e0}
+.reminder{background:#ffecb3}
+.emergency{background:#ffebee}
+.profile{background:#eceff1}
+.flash{animation:flash 1s infinite}
+@keyframes flash{0%{background:red}50%{background:white}100%{background:red}}
+a{text-decoration:none;color:#1565c0}
+</style>
+</head>
+
+<body>
+
+<section id="login" class="section active login">
+<h2>Login</h2>
+<input placeholder="Username">
+<button class="big-btn" onclick="openSec('lang')">Login</button>
+</section>
+
+<section id="lang" class="section lang">
+<h2>Select Language</h2>
+<select id="langSel">
+<option value="en-IN">English</option>
+<option value="ta-IN">Tamil</option>
+<option value="hi-IN">Hindi</option>
+</select>
+<button class="big-btn" onclick="startApp()">Continue</button>
+</section>
+
+<nav id="nav" style="display:none">
+<button onclick="openSec('stt')">Speech→Text</button>
+<button onclick="openSec('tts')">Text→Speech</button>
+<button onclick="openSec('govt')">Schemes</button>
+<button onclick="openSec('ngo')">NGOs</button>
+<button onclick="openSec('school')">Schools</button>
+<button onclick="openSec('medicine')">Medicine</button>
+<button onclick="openSec('reminder')">Reminder</button>
+<button onclick="openSec('emergency')">Emergency</button>
+<button onclick="openSec('profile')">Profile</button>
+</nav>
+
+<section id="stt" class="section stt">
+<h3>Speech to Text</h3>
+<button class="big-btn" onclick="startSTT()">Start</button>
+<textarea id="sttOut"></textarea>
+</section>
+
+<section id="tts" class="section tts">
+<h3>Text to Speech</h3>
+<textarea id="ttsText"></textarea>
+<button class="big-btn" onclick="speak(ttsText.value)">Speak</button>
+</section>
+
+<section id="govt" class="section govt">
+<h3>Government Schemes</h3>
+<div class="card">Disability Pension – 40% disability <br><a href="https://www.india.gov.in" target="_blank">Apply</a></div>
+<div class="card">UDID Card – Certified PwD <br><a href="https://www.swavlambancard.gov.in" target="_blank">Apply</a></div>
+<div class="card">ADIP Scheme – Income based <br><a href="https://socialjustice.gov.in" target="_blank">Apply</a></div>
+<div class="card">Scholarship – PwD students <br><a href="https://scholarships.gov.in" target="_blank">Apply</a></div>
+<div class="card">NHFDC Loan – PwD entrepreneurs <br><a href="https://nhfdc.nic.in" target="_blank">Apply</a></div>
+<div class="card">Ayushman Bharat – BPL PwD <br><a href="https://www.pmjay.gov.in" target="_blank">Apply</a></div>
+</section>
+
+<section id="ngo" class="section ngo">
+<h3>NGOs</h3>
+<div class="card"><a href="https://www.enableindia.org" target="_blank">Enable India</a></div>
+<div class="card"><a href="https://www.deaffoundation.org" target="_blank">Deaf Foundation</a></div>
+<div class="card"><a href="https://www.amarseva.org" target="_blank">Amar Seva Sangam</a></div>
+<div class="card"><a href="https://www.autism-india.org" target="_blank">Action for Autism</a></div>
+</section>
+
+<section id="school" class="section school">
+<h3>Special Schools</h3>
+<div class="card"><a href="https://www.education.gov.in" target="_blank">Inclusive Education</a></div>
+<div class="card"><a href="https://samagra.education.gov.in" target="_blank">Samagra Shiksha</a></div>
+</section>
+
+<section id="medicine" class="section medicine">
+<h3>Medicine</h3>
+<button class="big-btn" onclick="go('https://www.1mg.com')">1mg</button>
+<button class="big-btn" onclick="go('https://pharmeasy.in')">PharmEasy</button>
+<button class="big-btn" onclick="go('https://www.apollopharmacy.in')">Apollo</button>
+<button class="big-btn" onclick="go('https://www.google.com/maps/search/medical+store+near+me')">Nearby Medical Store</button>
+</section>
+
+<section id="reminder" class="section reminder">
+<h3>Medicine Reminder</h3>
+<input id="med" placeholder="Medicine Name">
+<input type="time" id="time">
+<button class="big-btn" onclick="alert('Reminder Saved')">Save</button>
+</section>
+
+<section id="emergency" class="section emergency">
+<h3>Emergency</h3>
+<button class="big-btn flash" onclick="call('112')">Emergency (112)</button>
+<button class="big-btn" onclick="call('108')">Ambulance</button>
+<button class="big-btn" onclick="call('100')">Police</button>
+<button class="big-btn" onclick="call('1098')">Child Helpline</button>
+<button class="big-btn" onclick="call('181')">Women Helpline</button>
+</section>
+
+<section id="profile" class="section profile">
+<h3>User Profile</h3>
+<input id="pname" placeholder="Name">
+<select id="ptype">
+<option>Blind</option>
+<option>Deaf</option>
+<option>Physical Disability</option>
+<option>Multiple Disability</option>
+</select>
+<button class="big-btn" onclick="saveProfile()">Save Profile</button>
+</section>
+
+<script>
+function openSec(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+function startApp(){
+document.getElementById('nav').style.display='flex';
+openSec('stt');
+speak(document.getElementById('langSel').value==='ta-IN'?'வரவேற்கிறோம்':'Welcome');
+}
+function speak(t){
+let u=new SpeechSynthesisUtterance(t);
+u.lang=document.getElementById('langSel').value;
+speechSynthesis.speak(u);
+}
+function startSTT(){
+let r=new(window.SpeechRecognition||window.webkitSpeechRecognition)();
+r.lang=document.getElementById('langSel').value;
+r.onresult=e=>sttOut.value=e.results[0][0].transcript;
+r.start();
+}
+function go(u){window.open(u,'_blank')}
+function call(n){window.location.href='tel:'+n}
+function saveProfile(){
+localStorage.name=pname.value;
+localStorage.type=ptype.value;
+alert("Profile Saved");
+}
+</script>
+
+</body>
+</html>
